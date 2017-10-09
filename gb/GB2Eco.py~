@@ -1,0 +1,19 @@
+import boto.sqs
+from boto.sqs.message import Message
+
+conn = boto.sqs.connect_to_region("eu-central-1",
+	aws_access_key_id = "AKIAI5H2RJ4GG4VZGLDQ",
+		aws_secret_access_key = "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")
+queue = conn.get_queue('GB2Eco')
+
+def gBMessage(fcPower, throttleAdv, steerAdv, motorSet, timestamp):
+	m = Message()
+	mString = "gb," + str(fcPower) + "," + str(throttleAdv) + "," + str(steerAdv) + "," + str(motorSet) + "," + str(timestamp)
+	m.set_body(mString)
+	queue.write(m)
+
+def strategyMessage(fcPower, throttleAdv, motorSet, timestamp):
+	m = Message()
+	mString = "st," + str(fcPower) + "," + str(throttleAdv) + "," + str(motorSet) + "," + str(timestamp)
+	m.set_body(mString)
+	queue.write(m)

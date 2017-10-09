@@ -1,0 +1,44 @@
+from GBInstruction import GBInstruction
+import sys
+import re
+from datetime import datetime
+
+class InputGBInstruction():
+
+
+	def __init__(self, newInputAvailable, newInput):
+		Instruction.__init__(self, "GB", timestamp)
+		self.newInputAvailable = newInputAvailable
+		self.newInput = newInput
+
+
+	def listenForInput():
+		instruction = raw_input("Please input instruction of format: FcPower, Throttle Advice, Steer Advice, Motor Settings")	
+			
+		splitUp = re.split(',', instruction)
+		fcpower = splitUp[0]
+		throttleAdv = splitUp[1]
+		steerAdv = splitUp[2]
+		motorSet = splitUp[3]
+
+		if len(splitUp) == 4 and isinstance(fcpower, int) and isinstance(throttleAdv, int) and isinstance(steerAdv, int) and isinstance(motorSet, int):
+			gb = GBInstruction(fcpower, throttleAdv, steerAdv, motorSet, datetime.now().strftime('%H:%M:%S.%f')[:-3])
+			setNewInputAvailable(True)
+			setNewInput(gb)
+
+
+	def setNewInputAvailable(self, value):
+		self.newInputAvailable = value
+
+
+	def GetNewInputAvailable(self):
+		return self.newInputAvailable	
+
+
+	def setNewInput(self, value):
+		self.newInput = value
+
+
+	def getNewInput(self):
+		return self.newInput
+

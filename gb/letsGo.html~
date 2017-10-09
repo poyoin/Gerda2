@@ -1,0 +1,17 @@
+<html>
+   <body>
+	<iframe id="myframe" src ="/home/ubuntu/Desktop/gb/mymap.html" width="100%" height="100%"></iframe>
+   	
+	<button onclick="myFunction()">Try it</button>	
+		
+	<script>
+
+	function myFunction() {
+    		setInterval(function(){ var iframe = document.getElementById('myframe');
+		iframe.src = iframe.src; }, 5000);
+	}
+
+	</script>      
+   </body>
+</html>
+
